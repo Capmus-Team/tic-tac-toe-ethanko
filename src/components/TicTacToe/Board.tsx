@@ -37,7 +37,10 @@ export default function Board({ onGameEnd }: BoardProps) {
       <Button
         key={i}
         variant={squares[i] ? "default" : "outline"}
-        className="h-20 w-20 text-3xl font-bold"
+        className={`h-20 w-20 text-3xl font-bold transition-all duration-200 
+          ${squares[i] === 'X' ? 'bg-fuchsia-600 hover:bg-fuchsia-700 text-white' : 
+            squares[i] === 'O' ? 'bg-pink-500 hover:bg-pink-600 text-white' : 
+            'hover:bg-primary/10 border-primary/30'}`}
         onClick={() => handleClick(i)}
       >
         {squares[i]}
@@ -53,9 +56,9 @@ export default function Board({ onGameEnd }: BoardProps) {
     : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
-    <Card className="p-6 w-fit mx-auto">
-      <div className="mb-4 text-xl font-bold">{status}</div>
-      <div className="grid grid-cols-3 gap-2">
+    <Card className="p-6 w-full bg-transparent shadow-none border-0">
+      <div className="mb-4 text-xl font-bold text-center text-primary">{status}</div>
+      <div className="grid grid-cols-3 gap-2 max-w-xs mx-auto">
         {Array(9).fill(null).map((_, i) => renderSquare(i))}
       </div>
     </Card>
